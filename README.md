@@ -15,7 +15,7 @@ func fetchData() {
     service
         .getSomeData()
         .mapToLoadable()
-        .assign(to: &data)
+        .assign(to: &$data)
 }
 ```
   
