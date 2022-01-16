@@ -40,7 +40,4 @@ final class LoadableTests: XCTestCase {
         .idle
     }
     
-    private struct LoadableError: LocalizedError, Identifiable {
-        let id: String = UUID().uuidString
-    }
 }
