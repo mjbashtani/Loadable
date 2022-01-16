@@ -8,7 +8,13 @@
 import Foundation
 import Combine
 import XCTest
+@testable import Loadable
 
 final class PublisherExtensionsTest: XCTestCase {
-    
+    func test_MapToLoadable_EmitingLoadingState() throws {
+       let publisher =  Just("")
+            .mapToLoadable()
+        let value = try awaitPublisher(publisher)
+        XCTAssertEqual(value, Loadable<String>.isLoading)
+    }
 }
