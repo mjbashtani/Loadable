@@ -11,5 +11,9 @@ import XCTest
 extension XCTestCase {
      struct LoadableError: LocalizedError, Identifiable {
         let id: String = UUID().uuidString
+         
+         var errorDescription: String? {
+             id
+         }
     }
 }
