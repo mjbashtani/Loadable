@@ -25,4 +25,19 @@ final class PublisherExtensionsTest: XCTestCase {
                                         .collect(2))
         XCTAssertEqual(value, [Loadable<String>.loaded(""), .isLoading])
     }
+    
+    func test_MapToLoadable_EmitingFailureState() throws {
+        let subject = CurrentValueSubject<String, Error>("")
+        let error = LoadableError()
+        subject.send(completion: .failure(error))
+        let result = try awaitPublisher(subject
+                                        .eraseToAnyPublisher()
+                                        .mapToLoadable()
+                                            .collect(2)
+                                            .last()
+                                            .eraseToAnyPublisher())
+            
+        XCTAssertEqual(result.first, Loadable<String>.failed(error))
+        
+    }
 }
