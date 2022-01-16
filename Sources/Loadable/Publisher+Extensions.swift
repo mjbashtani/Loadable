@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-@available(macOS 10.15, *)
 public extension Publisher {
     /// convert a publisher data to states of a label
     /// - returns: A publisher with ``Loadable`` output type
@@ -30,7 +29,6 @@ public extension Publisher {
 }
 
 /// used type erasure technique to extend publisher where output type is ``Loadable``
-@available(macOS 10.15, *)
 public extension Publisher where Output: LoadableProtocol, Failure == Never {
     /// Publish when state of loadable is loaded
     var loaded: AnyPublisher<Output.DataType, Failure> {
