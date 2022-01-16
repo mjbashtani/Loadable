@@ -12,8 +12,7 @@ import Combine
 public extension Publisher {
     /// convert a publisher data to states of a label
     /// - returns: A publisher with ``Loadable`` output type
-    func mapToLoadable() -> AnyPublisher<Loadable<Output>, Never>
-    where Failure == Error {
+    func mapToLoadable() -> AnyPublisher<Loadable<Output>, Never> {
             self
                 .map {
                Loadable<Output>.loaded($0)
