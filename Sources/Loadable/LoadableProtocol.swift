@@ -8,7 +8,7 @@
 import Foundation
 
 /// Use for type erasuring  ``Loadable`` for extending ``Combine.Publisher``
-protocol LoadableProtocol {
+public protocol LoadableProtocol {
     associatedtype DataType
     associatedtype Failure
 
