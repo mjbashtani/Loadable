@@ -17,4 +17,12 @@ final class PublisherExtensionsTest: XCTestCase {
         let value = try awaitPublisher(publisher)
         XCTAssertEqual(value, Loadable<String>.isLoading)
     }
+    
+    func test_MapToLoadable_EmitingLoadedState() throws {
+       let publisher =  Just("")
+            .mapToLoadable()
+        let value = try awaitPublisher(publisher
+                                        .collect(2))
+        XCTAssertEqual(value, [Loadable<String>.loaded(""), .isLoading])
+    }
 }
