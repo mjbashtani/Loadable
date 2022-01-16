@@ -39,3 +39,16 @@ public enum Loadable<Value>: LoadableProtocol {
     }
 
 }
+
+extension Loadable: Equatable where Value: Equatable {
+    public static func == (lhs: Loadable<Value>, rhs: Loadable<Value>) -> Bool {
+        switch (lhs, rhs) {
+        case (.idle, .idle): return true
+        case (.isLoading, .isLoading): return true
+        case let (.loaded(lhsValue), .loaded(rhsValue)): return lhsValue == rhsValue
+        case let (.failed(lhsError), .failed(rhsError)):
+            return lhsError.localizedDescription == rhsError.localizedDescription
+        default: return false
+        }
+    }
+}
