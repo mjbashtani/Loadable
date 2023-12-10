@@ -13,9 +13,8 @@ public extension Publisher {
     /// convert a publisher data to states of a label
     /// - returns: A publisher with ``Loadable`` output type
     func mapToLoadable() -> AnyPublisher<Loadable<Output>, Never> {
-            self
-                .map {
-               Loadable<Output>.loaded($0)
+        self.map {
+            Loadable<Output>.loaded($0)
 
         }.catch {
             Just(Loadable.failed($0))
@@ -25,8 +24,7 @@ public extension Publisher {
         // when subscripton happend set state of loadable to loading
         .merge(with: Just(Loadable<Output>.isLoading))
         .eraseToAnyPublisher()
-
-}
+    }
 }
 
 /// used type erasure technique to extend publisher where output type is ``Loadable``
